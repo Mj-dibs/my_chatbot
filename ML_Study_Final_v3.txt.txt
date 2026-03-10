@@ -1,0 +1,70 @@
+﻿# AWS MACHINE LEARNING & DATA ENGINEERING GUIDE
+
+## Section 1: Data Engineering and Storage
+- Amazon S3 Standard (S3 Standard, Simple Storage Service): High durability and availability storage for frequently accessed ML data.
+- Amazon S3 Intelligent-Tiering (S3-IT, Intelligent Tiering): Automatically moves data between frequent and infrequent access tiers based on usage patterns.
+- Amazon S3 Glacier / Deep Archive (S3 Glacier, Glacier Deep Archive, Archival Storage): Low-cost archival storage for old model versions and historical datasets.
+- Amazon FSx for Lustre (FSx, Lustre): High-performance file system that speeds up SageMaker training by serving S3 data at high speeds.
+- Amazon Kinesis Video Streams (KVS, Video Streams): Streams real-time video from a single producer; used for monitoring and batch processing.
+- Amazon Kinesis Data Streams (KDS, Data Streams): Collects large streams of data records in real-time using shards and partition keys.
+- Amazon Kinesis Data Firehose (KDF, Firehose): Loads streaming data into S3 or Redshift; supports data transformation via AWS Lambda.
+- Amazon Managed Service for Apache Flink (MSF, Kinesis Data Analytics): Processes data streams in real-time using Python, Java, or SQL.
+
+## Section 2: Machine Learning Modeling Concepts
+- Linear Regression (LR): Supervised learning for predicting continuous numerical values.
+- Logistic Regression (LogReg): Calculates the probability of an input belonging to a class using a Sigmoid function.
+- Decision Trees (DT): Uses Gini impurity or Entropy to learn decision rules for classification and regression.
+- K-Nearest Neighbors (KNN, K-NN): An instance-based "lazy" learner that predicts based on the proximity (Euclidean distance) of data points.
+- Support Vector Machine (SVM, Support Vector Network): Identifies the optimal hyperplane to separate classes, often utilizing the kernel trick.
+- Random Forest (RF): A bagging ensemble algorithm built from multiple decision trees to reduce overfitting.
+- XGBoost (Extreme Gradient Boosting, GBT): A highly efficient implementation of gradient boosting that uses residuals to minimize loss functions.
+- Convolutional Neural Networks (CNN, ConvNet): Deep learning architecture used for image processing, utilizing kernels, stride, and pooling layers.
+- Recurrent Neural Networks (RNN): Neural networks designed for sequential data and time-series forecasting.
+- Transformers (Attention Models): Models using self-attention mechanisms to capture dependencies across time steps.
+
+## Section 3: Amazon SageMaker Infrastructure & Tools
+- SageMaker Data Wrangler (Data Wrangler): A visual interface for data preparation, cleaning, and feature engineering.
+- SageMaker Processing (Processing Jobs): Managed infrastructure for running data pre-processing and model evaluation.
+- SageMaker Feature Store (Feature Store): A centralized repository to store and share features for training and real-time inference.
+- SageMaker Experiments (Experiments): Tracks model performance and artifacts across multiple training jobs for auditing.
+- SageMaker Smart Sifting (Smart Sifting): Reduces training time and cost by excluding less informative data samples.
+- SageMaker Training Compiler (Training Compiler): Accelerates deep learning training on GPUs by converting models into hardware-optimized instructions.
+- SageMaker Pipelines (ML Pipelines, SageMaker CI/CD): A service for ML that automates workflows using DAGs (Directed Acyclic Graphs).
+
+## Section 4: SageMaker Built-in Algorithms
+- Linear Learner (LL): Used for regression and classification; supports parallel training of multiple models.
+- SageMaker XGBoost (Built-in XGBoost): A memory-intensive boosting algorithm available as a built-in container.
+- Seq2Seq (Sequence-to-Sequence): Uses RNNs/CNNs with attention for machine translation and summary.
+- DeepAR (DeepAR Forecasting, Time Series Forecasting): A forecasting algorithm that uses recurrent neural networks to predict time-series data.
+- BlazingText (Word2Vec): Highly optimized implementation of Word2Vec for text classification and word embeddings.
+- Object2Vec (O2V): Generalizes word embeddings to any arbitrary object, requiring tokenization.
+- Object Detection (OD, Image Detection): Identifies objects in frames with bounding boxes using ResNet or SSD.
+- Semantic Segmentation (SS): Pixel-level object classification that produces a segmentation mask.
+- Random Cut Forest (RCF, Anomaly Detection): An unsupervised algorithm for identifying anomalies in time-series data.
+
+## Section 5: AWS AI & Application Services
+- Amazon Polly: Converts text to lifelike speech.
+- Amazon Transcribe (ASR, Speech-to-Text): Converts speech into text using automatic speech recognition.
+- Amazon Lex (Chatbot Service): Builds conversational interfaces using Intents, Utterances, and Slots.
+- Amazon Comprehend (NLP Service): A Natural Language Processing service that finds insights and relationships in text.
+- Amazon Rekognition (Image Analysis, Computer Vision): Provides image and video analysis for objects and faces.
+- Amazon Textract (Document Extraction): Automatically extracts text and data from scanned documents.
+
+## Section 6: Core AWS Management & Monitoring (The Basics)
+- Amazon CloudWatch (CloudWatch, CW): A monitoring and observability service that collects data in the form of logs, metrics, and events for AWS resources.
+- AWS CloudTrail (CloudTrail): Tracks user activity and API usage across your AWS infrastructure for auditing and security.
+- AWS IAM (Identity and Access Management, IAM Roles): Securely manages access to AWS services by creating users, groups, and permissions.
+- AWS Lambda (Lambda, Serverless Functions): A serverless compute service that runs code in response to events without managing servers.
+- Amazon VPC (Virtual Private Cloud, VPC): A private, isolated section of the AWS Cloud where you can launch resources in a virtual network.
+- AWS CloudFormation (CloudFormation, Infrastructure as Code): Allows you to model and set up your AWS resources with a JSON or YAML template.
+
+# SECTION 7: MODERN AI CONCEPTS (LLM & RAG)
+- Large Language Models (LLM): Deep learning models trained on vast amounts of text data to understand and generate human-like language (e.g., Amazon Nova, Claude, GPT).
+- Retrieval-Augmented Generation (RAG): A technique that grants an LLM access to specific, outside data (like this S3 document) to provide more accurate and up-to-date answers without retraining the model.
+- Foundation Models (FM): Large-scale models provided by services like Amazon Bedrock that can be customized for specific tasks.
+- Tokenization: The process of breaking down text into smaller units (tokens) that an LLM can process.
+- Hallucination: When an AI provides a confident but incorrect or fabricated answer; RAG is used specifically to reduce this.
+
+# SECTION 8: WORKFLOWS & DATA UPLOADS
+- Training Data Uploads: To train a model in SageMaker, data is typically uploaded to an Amazon S3 Bucket. SageMaker then points to that S3 URI (e.g., s3://my-bucket/data) to ingest it during a Training Job.
+- Knowledge Base Ingestion: For RAG applications, data is uploaded to S3 and then "Synced" to a Vector Database so the LLM can retrieve it.
